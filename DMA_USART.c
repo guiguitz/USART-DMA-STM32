@@ -46,6 +46,7 @@ void DMA_IrqHandler (DMA_HandleTypeDef *hdma, UART_HandleTypeDef *huart)
 
 		/* Copying the message to uart_user_message buffer	*/
 		len = DMA_RX_BUFFER_SIZE - hdma->Instance->CNDTR;
+		if(len > DMA_RX_BUFFER_SIZE - 1)	return;
 		memcpy(uart_user_message, DMA_RX_Buffer, len);
 
 		/* Uncomment below to transmit the data via uart */
